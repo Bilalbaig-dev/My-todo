@@ -1,9 +1,13 @@
 const todoElement=document.querySelector('.input-todo');
 const dateElement=document.querySelector('.input-date');
-   let dataBase=[];
 let display=document.querySelector('.js-display');
+let dataBase=[];
+
         
     function getData(){
+      if(todoElement.value===''||dateElement.value===''){
+         return;
+      }
           let object={
             name:todoElement.value,
             date:dateElement.value
@@ -16,15 +20,20 @@ let display=document.querySelector('.js-display');
        display.innerHTML='';
       for(let i=0;i<dataBase.length;i++){
       display.innerHTML+=`
+    <div class="todo-container">
       <h4>${dataBase[i].name}</h4>
       <h4>${dataBase[i].date}</h4>
-      <button id="red" class="btn" onclick="
+      <button id="red" class="btn"
+     onclick="
       deleteBtn(${i})
-      ">Delete</button>
-      `;
+      "
+      >Delete</button>
+    </div>`;
     }
   }
   function deleteBtn(index){
    dataBase.splice(index,1);
-   return render();
+   render();
   }
+
+ 
